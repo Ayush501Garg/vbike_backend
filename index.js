@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 
-app.get('/',(req,res) =>{
+app.get('/',async (req, res)=>{
   res.send("Backed Runing");
 });
 
