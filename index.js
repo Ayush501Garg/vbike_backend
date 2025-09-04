@@ -15,6 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
+
+app.get('/',(req,res){
+  res.send("Backed Runing");
+});
 app.use('/api/auth', authRoutes);
 app.use("/api/bike-types", bikeTypeRoutes);
 app.use("/api/bike-models", bikeModelRoutes);
