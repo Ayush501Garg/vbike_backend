@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const bikeTypeRoutes = require('./routes/bikeTypeRoutes');
@@ -11,6 +12,14 @@ dotenv.config();
 
 // Initialize app
 const app = express();
+
+
+// ✅ Define allowed origins (NO trailing slashes)
+app.use(cors({
+  origin: '*',
+  credentials: false // can't use cookies/auth headers with '*'
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
