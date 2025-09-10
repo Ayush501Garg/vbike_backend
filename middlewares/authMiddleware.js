@@ -10,6 +10,7 @@ module.exports  = (req, res, next) => {
     });
   }
 
+  // commit
   const token = authHeader.split(' ')[1];
 
   try {
