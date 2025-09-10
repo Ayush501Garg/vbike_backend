@@ -203,7 +203,6 @@ exports.login = async (req, res) => {
     return res.status(200).json({
       status: "success",
       code: 200,
-      token:token,
       user:{
         userId: user._id,
         name:user.name,
