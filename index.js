@@ -6,6 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const bikeTypeRoutes = require('./routes/bikeTypeRoutes');
 const bikeModelRoutes = require('./routes/bikeModelRoutes');
 const bikeRoutes = require('./routes/bikeRoutes');
+const bikeRegisterRoutes = require('./routes/bikeRegisterRoutes');
 
 // Load env variables
 dotenv.config();
@@ -34,6 +35,7 @@ app.use('/api/auth', authRoutes);
 app.use("/api/bike-types", bikeTypeRoutes);
 app.use("/api/bike-models", bikeModelRoutes);
 app.use("/api/bikes", bikeRoutes);
+app.use("/api/bike-register", bikeRegisterRoutes);
 
 // Connect DB and Start Server
 const startServer = async () => {
