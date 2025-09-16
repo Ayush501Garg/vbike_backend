@@ -4,7 +4,7 @@ const BikeRegister = require("../models/bikeRegisterModel");
 exports.createBikeRegister = async (req, res) => {
   try {
     const { bikeId, bikeSecret, name } = req.body;
-    const bike = await BikeRegister.create({ bikeId, bikeSecret, name });
+    const bike = await BikeRegister.create({ bikeId, userId, name });
 
     res.status(201).json({
       status: "success",
