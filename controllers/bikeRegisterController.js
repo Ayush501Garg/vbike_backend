@@ -3,7 +3,7 @@ const BikeRegister = require("../models/bikeRegisterModel");
 // Create a new bike register entry
 exports.createBikeRegister = async (req, res) => {
   try {
-    const { bikeId, bikeSecret, name } = req.body;
+    const { bikeId, userId, name } = req.body;
     const bike = await BikeRegister.create({ bikeId, userId, name });
 
     res.status(201).json({
