@@ -8,7 +8,7 @@ const bikeRegisterSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
-    bikeSecret: {
+    userId: {
       type: String,
       required: true,
       trim: true,
