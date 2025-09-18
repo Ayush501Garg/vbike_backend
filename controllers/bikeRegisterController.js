@@ -1,23 +1,65 @@
+const axios = require("axios");
 const BikeRegister = require("../models/bikeRegisterModel");
 
-// Create a new bike register entry
+
+
+
 exports.createBikeRegister = async (req, res) => {
   try {
-    const { bikeId, userId, name } = req.body;
-    const bike = await BikeRegister.create({ bikeId, userId, name });
+    const { bikeId, bikeName, user_id } = req.body;
 
-    res.status(201).json({
+    console.log("Body",req.body);
+
+    // Step 1: Register the bike in DB
+
+    let apiResponse = null;
+
+    // Step 2: Call external API
+    try {
+      apiResponse = await axios.post(
+        "http://192.168.1.124:8080/api/v1/device/register",
+        {
+          bikeId,
+          bikeName,
+          user_id
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    console.log("apiResponse", apiResponse.data);
+    const bike = await BikeRegister.create({ bikeId,user_id,bikeName});
+    console.log(" bike Registered", bike);
+   return res.status(201).json({
       status: "success",
-      message: "Bike registered successfully",
-      data: bike,
+      message: apiResponse.message,
+      data: {
+        bike,
+        apiResponse: apiResponse ? apiResponse.data : null,
+      },
     });
+    } catch (apiError) {
+        console.log(
+        "Error in API calling:",
+        apiError.response.data,
+      );
+      return res.status(400).json({
+      status: "error",
+      message:  apiError.response.data.message,
+    });
+    
+  }
   } catch (error) {
-    res.status(400).json({
+  return  res.status(400).json({
       status: "error",
       message: error.message,
     });
   }
 };
+
+
 
 // Get all bike registers
 exports.getBikeRegisters = async (req, res) => {

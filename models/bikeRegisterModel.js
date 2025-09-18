@@ -8,12 +8,12 @@ const bikeRegisterSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
-    userId: {
+    user_id: {
       type: String,
       required: true,
       trim: true,
     },
-    name: {
+    bikeName: {
       type: String,
       required: true,
       trim: true,
